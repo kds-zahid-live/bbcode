@@ -70,7 +70,7 @@ function BacklinkGenerator() {
     <div className="container">
       <div className="header">
         <h1>BBCode Generator</h1>
-        <p>Generate BBCode Anchor Tags.</p>
+        <p>Generate BBCode.</p>
       </div>
 
       <div className="form-container">
