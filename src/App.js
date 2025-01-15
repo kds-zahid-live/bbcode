@@ -23,18 +23,33 @@ function BacklinkGenerator() {
       const link = backlinkArray[index].replace(/\/+$/, ''); // Remove trailing slashes
       const finalKeyword = isLowerCase ? keyword.toLowerCase() : keyword;
       const bbcodeLink = `[url=${link}]${finalKeyword}[/url]`;
-      return { bbcodeLink, renderedLink: bbcodeLink };
+      const bbcodeImage = `[url=${link}][img]  paste_img_link_here  [/img][/url]`;
+      return { bbcodeLink, bbcodeImage, renderedLink: bbcodeLink };
     });
     setGeneratedLinks(links);
   };
 
+  // const copyLinks = () => {
+  //   const linksToCopy = generatedLinks.map((item) => item.bbcodeLink).join('\n');
+  //   navigator.clipboard
+  //     .writeText(linksToCopy)
+  //     .then(() => alert('BBCode links copied to clipboard!'))
+  //     .catch((err) => alert(`Failed to copy links: ${err}`));
+  // };
+
   const copyLinks = () => {
-    const linksToCopy = generatedLinks.map((item) => item.bbcodeLink).join('\n');
+    const linksToCopy = generatedLinks
+      .map(
+        (item) => `${item.bbcodeLink}\t${item.bbcodeImage}` // Concatenate both BBCode and Image BBCode
+      )
+      .join('\n'); // Separate each pair by a blank line for better readability
+    
     navigator.clipboard
       .writeText(linksToCopy)
-      .then(() => alert('BBCode links copied to clipboard!'))
+      .then(() => alert('Copied to clipboard!'))
       .catch((err) => alert(`Failed to copy links: ${err}`));
   };
+  
 
   const clearAll = () => {
     setKeywords('');
@@ -98,8 +113,8 @@ function BacklinkGenerator() {
             checked={isLowerCase}
             onChange={() => setIsLowerCase((prev) => !prev)}
           />
-          <br/>
-          <br/>
+          <br />
+          <br />
         </div>
 
         <button onClick={handleGenerate}>Generate BBCode</button>
@@ -113,12 +128,14 @@ function BacklinkGenerator() {
             <thead>
               <tr>
                 <th>BBCode</th>
+                <th>Image BBCode</th>
               </tr>
             </thead>
             <tbody>
               {generatedLinks.map((item, index) => (
                 <tr key={index}>
                   <td>{item.bbcodeLink}</td>
+                  <td>{item.bbcodeImage}</td>
                 </tr>
               ))}
             </tbody>
