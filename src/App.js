@@ -25,7 +25,7 @@ function BacklinkGenerator() {
       const link = backlinkArray[index].replace(/\/+$/, ''); // Remove trailing slashes
       const finalKeyword = isLowerCase ? keyword.toLowerCase() : keyword;
       const bbcodeLink = `[url=${link}]${finalKeyword}[/url]`;
-      const bbcodeImage = `[url=${link}][img]  paste_img_link_here  [/img][/url]`;
+      const bbcodeImage = `[url=${link}][img]paste_img_link_here[/img][/url]`;
       return { bbcodeLink, bbcodeImage, renderedLink: bbcodeLink };
     });
     setGeneratedLinks(links);
