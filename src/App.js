@@ -144,7 +144,7 @@ function BacklinkGenerator() {
           </table>
           <br />
           <button id="copyBtn" onClick={copyLinks}>
-            Copy Links
+            Copy
           </button>
           <button id="clearBtn" onClick={clearAll}>
             Clear
