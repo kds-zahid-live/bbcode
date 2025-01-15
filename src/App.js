@@ -135,7 +135,7 @@ function BacklinkGenerator() {
 
       <footer>
         <p>
-          <span className="copyright">©</span> {new Date().getFullYear()} Backlink Generator - Created with ❤️ by Zahid Hasan
+          <span className="copyright">©</span> {new Date().getFullYear()} BBCode Generator - Created with ❤️ by Zahid Hasan
         </p>
       </footer>
 
