@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+import Tools from './Tools';  // Import Tools component
+
 function BacklinkGenerator() {
   const [keywords, setKeywords] = useState('');
   const [backlinks, setBacklinks] = useState('');
@@ -155,6 +157,7 @@ function BacklinkGenerator() {
           <span className="copyright">©</span> {new Date().getFullYear()} BBCode Generator - Created with ❤️ by Zahid Hasan
         </p>
       </footer>
+      <Tools />
 
       {/* Floating Buttons */}
       <div className="scroll-button-container">
