@@ -7,6 +7,7 @@ function BacklinkGenerator() {
   const [generatedLinks, setGeneratedLinks] = useState([]);
   const [error, setError] = useState('');
   const [showGoTopBtn, setShowGoTopBtn] = useState(false);
+  const [isLowerCase, setIsLowerCase] = useState(true); // Toggle for lowercase
 
   const handleGenerate = () => {
     const keywordArray = keywords.split('\n').map((kw) => kw.trim());
@@ -20,17 +21,18 @@ function BacklinkGenerator() {
     setError('');
     const links = keywordArray.map((keyword, index) => {
       const link = backlinkArray[index].replace(/\/+$/, ''); // Remove trailing slashes
-      const htmlLink = `<a href="${link}">${keyword.toLowerCase()}</a>`;
-      return { htmlLink, renderedLink: <a href={link}>{keyword.toLowerCase()}</a> };
+      const finalKeyword = isLowerCase ? keyword.toLowerCase() : keyword;
+      const bbcodeLink = `[url=${link}]${finalKeyword}[/url]`;
+      return { bbcodeLink, renderedLink: bbcodeLink };
     });
     setGeneratedLinks(links);
   };
 
   const copyLinks = () => {
-    const linksToCopy = generatedLinks.map((item) => item.htmlLink).join('\n');
+    const linksToCopy = generatedLinks.map((item) => item.bbcodeLink).join('\n');
     navigator.clipboard
       .writeText(linksToCopy)
-      .then(() => alert('Links copied to clipboard!'))
+      .then(() => alert('BBCode links copied to clipboard!'))
       .catch((err) => alert(`Failed to copy links: ${err}`));
   };
 
@@ -67,8 +69,8 @@ function BacklinkGenerator() {
   return (
     <div className="container">
       <div className="header">
-        <h1>Backlink Generator</h1>
-        <p>Generate Anchor tags.</p>
+        <h1>BBCode Generator</h1>
+        <p>Generate BBCode Anchor Tags.</p>
       </div>
 
       <div className="form-container">
@@ -85,34 +87,43 @@ function BacklinkGenerator() {
           id="backlinks"
           value={backlinks}
           onChange={(e) => setBacklinks(e.target.value)}
-          placeholder="Backlink 1&#10;Backlink 2&#10;..."
+          placeholder="link 1&#10;link 2&#10;..."
         />
 
-        <button onClick={handleGenerate}>Generate Backlinks</button>
+        <div className="toggle-container">
+          <label htmlFor="toggleCase">Lowercase keywords:</label>
+          <input
+            type="checkbox"
+            id="toggleCase"
+            checked={isLowerCase}
+            onChange={() => setIsLowerCase((prev) => !prev)}
+          />
+          <br/>
+          <br/>
+        </div>
+
+        <button onClick={handleGenerate}>Generate BBCode</button>
         {error && <p className="error">{error}</p>}
       </div>
 
       {generatedLinks.length > 0 && (
         <>
-          <h2>Generated Backlinks</h2>
+          <h2>Generated BBCode</h2>
           <table>
             <thead>
               <tr>
-                <th>Code</th>
-                <th>Link</th>
+                <th>BBCode</th>
               </tr>
             </thead>
             <tbody>
               {generatedLinks.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.htmlLink}</td>
-                  <td>{item.renderedLink}</td>
+                  <td>{item.bbcodeLink}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-              <br>
-
+          <br />
           <button id="copyBtn" onClick={copyLinks}>
             Copy Links
           </button>
