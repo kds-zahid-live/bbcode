@@ -11,7 +11,7 @@ const Tools = () => {
 
     color: 'black !important',
     backgroundColor: 'aqua',
-    boxShadow: ' 0 0 10px aqua';
+    boxShadow: ' 0 0 10px aqua',
   
     border: 'none',
     borderRadius: '25px',
