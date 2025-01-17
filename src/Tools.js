@@ -7,9 +7,8 @@ const Tools = () => {
     left: '20px',
     padding: '15px 25px',
     backgroundColor: '#00B786',
-    color: '#fff',
 
-    color: 'black !important',
+    color: 'black',
     backgroundColor: 'aqua',
     boxShadow: ' 0 0 10px aqua',
   
