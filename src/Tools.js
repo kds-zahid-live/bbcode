@@ -8,6 +8,11 @@ const Tools = () => {
     padding: '15px 25px',
     backgroundColor: '#00B786',
     color: '#fff',
+
+    color: 'black !important',
+    backgroundColor: 'aqua',
+    boxShadow: ' 0 0 10px aqua';
+  
     border: 'none',
     borderRadius: '25px',
     fontSize: '16px',
