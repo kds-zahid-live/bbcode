@@ -7,6 +7,7 @@ const Tools = () => {
     left: '20px',
     padding: '15px 25px',
     backgroundColor: '#00B786',
+    boxShadow: '0 0 20px #00B786',
     color: 'white',  
     border: 'none',
     borderRadius: '25px',
